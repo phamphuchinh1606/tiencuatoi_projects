@@ -1,0 +1,55 @@
+[tool.poetry]
+name = "tiencuatoi-backend"
+version = "1.0.0"
+description = "Backend API for TienCuaToi project"
+authors = ["TienCuaToi Team"]
+readme = "README.md"
+packages = [{ include = "app" }]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = { extras = ["standard"], version = "^0.115.0" }
+uvicorn = { extras = ["standard"], version = "^0.32.0" }
+sqlalchemy = { extras = ["asyncio"], version = "^2.0.36" }
+aiomysql = "^0.2.0"
+alembic = "^1.14.0"
+pydantic = { extras = ["email"], version = "^2.10.0" }
+pydantic-settings = "^2.7.0"
+python-jose = { extras = ["cryptography"], version = "^3.3.0" }
+bcrypt = "^4.2.0"
+python-multipart = "^0.0.20"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.0"
+pytest-asyncio = "^0.25.0"
+httpx = "^0.28.0"
+aiosqlite = "^0.20.0"
+ruff = "^0.8.0"
+mypy = "^1.13.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# ─── Ruff (Linter + Formatter) ────────────────────────────────────────────────
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+select = ["E", "F", "I", "N", "UP", "B", "C4", "SIM"]
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+# ─── Pytest ───────────────────────────────────────────────────────────────────
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
+
+# ─── MyPy ─────────────────────────────────────────────────────────────────────
+[tool.mypy]
+python_version = "3.12"
+strict = false
+ignore_missing_imports = true
